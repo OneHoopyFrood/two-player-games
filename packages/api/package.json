@@ -1,12 +1,25 @@
 {
   "name": "@tic-tac-toe/api",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "src/app.ts",
   "author": "Cole Panike",
   "license": "None",
+  "scripts": {
+    "start:dev": "ts-node src/app.ts",
+    "build": "tsc",
+    "start:prod": "node dist/app.js"
+  },
   "private": true,
   "dependencies": {
-    "@feathersjs/feathers": "^5.0.24",
-    "express": "^4.18.3"
+    "koa": "^2.15.1",
+    "koa-router": "^12.0.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.15.0",
+    "@types/koa-router": "^7.4.8"
+  },
+  "peerDependencies": {
+    "eslint": "*",
+    "typescript": "*"
   }
 }
