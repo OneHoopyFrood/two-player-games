@@ -1,12 +1,10 @@
-import Koa from 'koa'
+import express from 'express'
 
-import gameRouter from './endpoints/game/routes'
-
-const app = new Koa()
+const app = express()
 const PORT = process.env.PORT || 3001
 
 // Routes
-app.use(gameRouter.routes()).use(gameRouter.allowedMethods())
+app.use()
 
 // Server
 app.listen(PORT, () => {
