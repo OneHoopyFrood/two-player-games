@@ -1,0 +1,57 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum GameResult {
+  X
+  O
+  Draw
+}
+
+model Game {
+  id        Int         @id @default(autoincrement())
+  slug      String      @unique
+  playerXId String
+  playerOId String
+  result    GameResult?
+  moves     Move[]
+  playerX   User        @relation(name: "playerX", fields: [playerXId], references: [id])
+  playerO   User        @relation(name: "playerO", fields: [playerOId], references: [id])
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model User {
+  id             String   @id @default(uuid())
+  name           String
+  passkey        String
+  gamesAsPlayerX Game[]   @relation("playerX")
+  gamesAsPlayerO Game[]   @relation("playerO")
+  moves          Move[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+enum BoardPosition {
+  A1
+  A2
+  A3
+  B1
+  B2
+  B3
+  C1
+  C2
+  C3
+}
+
+model Move {
+  id        Int           @id @default(autoincrement())
+  game      Game          @relation(fields: [gameId], references: [id])
+  gameId    Int
+  player    User          @relation(fields: [playerId], references: [id])
+  playerId  String
+  position  BoardPosition
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
