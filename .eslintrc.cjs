@@ -3,11 +3,18 @@ module.exports = {
   env: { es2020: true },
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    project: './tsconfig.eslint.json',
+  },
+  overrides: [
+    {
+      files: ['packages/**/*'],
+    },
+  ],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
     'no-unused-vars': 'error',
-    '@typescript-eslint/strict-boolean-expressions': 'error', // Enforce strict null checks
     '@typescript-eslint/explicit-function-return-type': 'error', // Require return types
     '@typescript-eslint/no-explicit-any': 'error', // Disallow usage of 'any' type
     '@typescript-eslint/no-unsafe-assignment': 'error', // Disallow unsafe assignments

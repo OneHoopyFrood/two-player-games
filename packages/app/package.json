@@ -22,7 +22,6 @@
     "vite": "^5.1.6"
   },
   "peerDependencies": {
-    "eslint": "*",
-    "typescript": "*"
+    "eslint": "*"
   }
 }
